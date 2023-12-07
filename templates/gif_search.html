@@ -29,18 +29,15 @@ Gif Search
     </fieldset>
 </form>
 
-<!-- TODO: Only show this section if there are GIFs to show -->
+{% if(gifs): %}
 <section id="form_results">
+    <p>Here are your GIFs:</p>
     <p>
-        Here are your GIFs:
-    </p>
-    <!-- TODO: Use a for loop to show each GIF separately in an img tag (and place each one in a 
-        separate p tag to show on separate lines). You can get the GIF's image URL by using: 
-        gif['media'][0]['gif']['url'] -->
-
-    <p>
-        <img src="https://your/gif/url/goes/here" alt="GIF">
+        {%for gif in gifs%} 
+            <img src={{gif['media_formats']['nanogif']['url']}} alt="GIF"> 
+        {% endfor%}
     </p>
 </section>
-
+{% else %} 
+{% endif %} 
 {% endblock %}
